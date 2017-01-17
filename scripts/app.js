@@ -2,6 +2,9 @@
 // Angular App
 ////////////////////////////
 
+var uid = "123"
+
+// firebase url: https://user-notes-f899c.firebaseio.com/
 var app = angular.module('UserNotes', ['ngRoute'])
 
 // Config
@@ -33,18 +36,40 @@ app.config(function($routeProvider, $locationProvider) {
 app.controller('LoginCtrl', function($scope, $http) {
 	// Login-related variables go here
 })
+
 app.controller('RegistrationCtrl', function($scope, $http) {
 	// Registration-related variables go here
 })
+
+// Write and save note
 app.controller('NewNoteCtrl', function($scope, $http) {
-	// New note related variables go here
-	// Maybe use an ng-model for the input box?
+	$scope.saveNote = function() {
+		console.log("The user note is: ", $scope.userNote)
+		let noteObj = {
+			uid: uid,
+			note: $scope.userNote
+		}
+		$http({
+			method: "POST",
+			url: "https://user-notes-f899c.firebaseio.com/.json",
+			data: JSON.stringify(noteObj)
+		})
+		.then(
+			$('.user-note').val('')
+		)
+	}
 })
+
 app.controller('NotesCtrl', function($scope, $http) {
-	// Notes listed
+	$http({
+		method: "GET",
+		url: "https://user-notes-f899c.firebaseio.com/.json",
+	})
+	.then((val) => {
+		$scope.notes = val.data
+		console.log("$scope.notes", $scope.notes)
+	})
 })
-
-
 
 
 

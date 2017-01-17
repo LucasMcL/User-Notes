@@ -1,1 +1,11 @@
-<h2>New Notes</h2>
+<h2 class="center-align">New Note</h2>
+
+<form class="container">
+	<div class="row">
+		<textarea class="col s12 user-note" ng-model="userNote"></textarea>
+	</div> <!-- end row -->
+	<div class="row">
+		<a class="btn col s4 m2 lime" href="#/notes">View Notes</a>
+		<a class="btn col s4 offset-s4 m2 offset-m8" ng-click="saveNote()" ng-disabled="!userNote">Save</a>
+	</div>
+</form>
