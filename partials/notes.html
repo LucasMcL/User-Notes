@@ -1,5 +1,5 @@
 <h2 class="center-align">Notes</h2>
 
 <div class="container">
-	<p ng-repeat="noteObj in notes | filter: { uid: '123' }">{{noteObj.note}}</p>
+	<p ng-repeat="noteObj in notes | filter: { uid: uid }">{{noteObj.note}}</p>
 </div>

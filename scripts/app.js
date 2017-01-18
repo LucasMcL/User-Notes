@@ -72,6 +72,7 @@ app.controller('NotesCtrl', function($scope, $http) {
 			arrayOfNotes.push(jsonData[firebaseId])
 		}
 		$scope.notes = arrayOfNotes
+		$scope.uid = uid
 	})
 })
 
