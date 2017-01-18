@@ -66,8 +66,12 @@ app.controller('NotesCtrl', function($scope, $http) {
 		url: "https://user-notes-f899c.firebaseio.com/.json",
 	})
 	.then((val) => {
-		$scope.notes = val.data
-		console.log("$scope.notes", $scope.notes)
+		let jsonData = val.data
+		let arrayOfNotes = []
+		for(firebaseId in jsonData) {
+			arrayOfNotes.push(jsonData[firebaseId])
+		}
+		$scope.notes = arrayOfNotes
 	})
 })
 
